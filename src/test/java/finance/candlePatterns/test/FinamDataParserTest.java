@@ -29,10 +29,10 @@ public class FinamDataParserTest {
                 "20110222,000000,186655.00000,186945.00000,182875.00000,183340.00000,1368923",
                 new Bar(
                     new LocalDateTime("2011-02-22"),
-                    new BigDecimal(186655.00, new MathContext(2)),
-                    new BigDecimal(183340.00, new MathContext(2)),
-                    new BigDecimal(186945.00, new MathContext(2)),
-                    new BigDecimal(182875.00, new MathContext(2))
+                    new BigDecimal(186655.00, new MathContext(8)),
+                    new BigDecimal(183340.00, new MathContext(8)),
+                    new BigDecimal(186945.00, new MathContext(8)),
+                    new BigDecimal(182875.00, new MathContext(8))
                 )
             }
         };
@@ -42,6 +42,7 @@ public class FinamDataParserTest {
         Bar expected,
         Bar actual
     ) {
+        //System.out.println(actual.open.doubleValue());
         assertEquals(expected, actual);
     }
 }

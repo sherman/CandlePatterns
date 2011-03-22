@@ -37,10 +37,10 @@ public class Bar {
         
         return
             bar.time.equals(this.time)
-            && bar.open.equals(this.open)
-            && bar.close.equals(this.close)
-            && bar.high.equals(this.high)
-            && bar.low.equals(this.low);
+            && bar.open.compareTo(this.open) == 0
+            && bar.close.compareTo(this.close) == 0
+            && bar.high.compareTo(this.high) == 0
+            && bar.low.compareTo(this.low) == 0;
     }
     
     @Override

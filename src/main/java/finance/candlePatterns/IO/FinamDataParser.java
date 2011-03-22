@@ -21,10 +21,10 @@ public class FinamDataParser implements DataParser {
             throw new IllegalArgumentException("I don't know such format!");
         }
         
-        BigDecimal open = new BigDecimal(parts[2], new MathContext(2));
-        BigDecimal high = new BigDecimal(parts[3], new MathContext(2));
-        BigDecimal low = new BigDecimal(parts[4], new MathContext(2));
-        BigDecimal close = new BigDecimal(parts[5], new MathContext(2));
+        BigDecimal open = new BigDecimal(parts[2], new MathContext(8));
+        BigDecimal high = new BigDecimal(parts[3], new MathContext(8));
+        BigDecimal low = new BigDecimal(parts[4], new MathContext(8));
+        BigDecimal close = new BigDecimal(parts[5], new MathContext(8));
         
         if (high.intValue() < low.intValue())
             throw new IllegalArgumentException("High must be greater than low!");
