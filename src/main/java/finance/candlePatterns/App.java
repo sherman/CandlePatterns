@@ -5,7 +5,7 @@ import java.util.List;
 
 import finance.candlePatterns.Core.Bar;
 import finance.candlePatterns.Core.FilterApplier;
-import finance.candlePatterns.Core.LongVolatilityBreakoutFilter;
+import finance.candlePatterns.Filters.LongVolatilityBreakoutFilter;
 import finance.candlePatterns.IO.DataLoader;
 import finance.candlePatterns.IO.FinamDataParser;
 import finance.candlePatterns.IO.FinamParserFactory;
