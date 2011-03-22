@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -27,8 +29,8 @@ public class DataLoader<P extends DataParser> {
         return dataFile;
     }
     
-    public Map<LocalDateTime, Bar> load() {
-        Map<LocalDateTime, Bar> bars = new HashMap<LocalDateTime, Bar>();
+    public List<Bar> load() {
+        ArrayList<Bar> bars = new ArrayList<Bar>();
         BufferedReader br = null;
         
         try {
@@ -39,7 +41,7 @@ public class DataLoader<P extends DataParser> {
                 
                 while ((line = br.readLine()) != null) {
                     final Bar bar = parser.getBarFromString(line);
-                    bars.put(bar.time, bar);
+                    bars.add(bar);
                 }
             } catch (FileNotFoundException e) {
                 log.fatal("No suitable file was found.", e);
