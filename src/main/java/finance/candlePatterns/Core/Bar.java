@@ -24,4 +24,37 @@ public class Bar {
         this.high = high;
         this.low = low;
     }
+    
+    @Override
+    public boolean equals(Object that) {
+        if (that == this)
+            return true;
+        
+        if (!(that instanceof Bar))
+            return false;
+        
+        final Bar bar = (Bar) that;
+        
+        return
+            bar.time.equals(this.time)
+            && bar.open.equals(this.open)
+            && bar.close.equals(this.close)
+            && bar.high.equals(this.high)
+            && bar.low.equals(this.low);
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 31 + time.hashCode();
+        hash = hash * 31 + open.hashCode();
+        hash = hash * 31 + close.hashCode();
+        hash = hash * 31 + high.hashCode();
+        return hash * 31 + low.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("%s %f %f %f %f", time, open, close, high, low);
+    }
 }
