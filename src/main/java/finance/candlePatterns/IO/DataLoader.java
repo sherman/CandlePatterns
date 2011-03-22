@@ -13,12 +13,14 @@ import org.joda.time.LocalDateTime;
 
 import finance.candlePatterns.Core.Bar;
 
-public class DataLoader {
+public class DataLoader<P extends DataParser> {
     private final File dataFile;
     private final Logger log = Logger.getLogger(DataLoader.class);
+    private final DataParser parser;
     
-    public DataLoader(File dataFile) {
+    public DataLoader(File dataFile, ParserFactory<P> parserFactory) {
         this.dataFile = dataFile;
+        this.parser = parserFactory.create();
     }
 
     public File getDataFile() {
@@ -32,30 +34,24 @@ public class DataLoader {
         try {
             try {
                 br = new BufferedReader(new FileReader(dataFile));
-            }  catch (FileNotFoundException e) {
+                
+                String line = null;
+                
+                while ((line = br.readLine()) != null) {
+                    final Bar bar = parser.getBarFromString(line);
+                    bars.put(bar.time, bar);
+                }
+            } catch (FileNotFoundException e) {
                 log.fatal("No suitable file was found.", e);
                 return bars;
             } finally {
                 if (null != br)
                     br.close();
             }
-            
-        } catch (IOException e) { 
+        } catch (IOException e) {
             log.error(e);
         }
         
         return bars;
-        
-        
-        /*String line;
-        
-        try {
-            while ((line = br.readLine()) != null) {
-                //bars.put(key, value)
-            }
-        } catch (IOException e) {
-            
-        }
-        return bars;*/
     }
 }

@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import org.joda.time.LocalDateTime;
 
 public class Bar {
-    private final LocalDateTime time;
-    private final BigDecimal open;
-    private final BigDecimal close;
-    private final BigDecimal high;
-    private final BigDecimal low;
+    public final LocalDateTime time;
+    public final BigDecimal open;
+    public final BigDecimal close;
+    public final BigDecimal high;
+    public final BigDecimal low;
     
     public Bar(
         LocalDateTime time,
@@ -23,25 +23,5 @@ public class Bar {
         this.close = close;
         this.high = high;
         this.low = low;
-    }
-    
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public BigDecimal getOpen() {
-        return open;
-    }
-
-    public BigDecimal getClose() {
-        return close;
-    }
-
-    public BigDecimal getHigh() {
-        return high;
-    }
-
-    public BigDecimal getLow() {
-        return low;
     }
 }

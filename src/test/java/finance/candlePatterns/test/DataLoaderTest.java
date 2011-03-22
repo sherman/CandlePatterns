@@ -9,14 +9,23 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.*;
 
 import finance.candlePatterns.IO.DataLoader;
+import finance.candlePatterns.IO.FinamDataParser;
+import finance.candlePatterns.IO.FinamParserFactory;
+import finance.candlePatterns.IO.ParserFactory;
 
 public class DataLoaderTest {
     private final Logger log = Logger.getLogger(DataLoaderTest.class);
     
+    private final ParserFactory<FinamDataParser> pFactory =
+        new FinamParserFactory<FinamDataParser>();
+    
     @Test
     public void testFileOpen() {
         // test on non existent file
-        DataLoader loader = new DataLoader(new File("non existent file"));
+        DataLoader<FinamDataParser> loader = new DataLoader<FinamDataParser>(
+            new File("non existent file"),
+            pFactory
+        );
         assertEquals(true, loader.load().isEmpty());
         
         // test real file
@@ -29,7 +38,10 @@ public class DataLoaderTest {
             return;
         }
         
-        loader = new DataLoader(testfile);
+        loader = new DataLoader<FinamDataParser>(
+            testfile,
+            pFactory
+        );
         assertEquals(true, loader.load().isEmpty());
     }
 }
