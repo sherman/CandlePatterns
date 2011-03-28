@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
@@ -18,7 +19,7 @@ public class FilterApplier {
     }
     
     public void filtrate(List<Bar> bars) {
-        Map<String, List<Integer>> statistic = new HashMap<String, List<Integer>>();
+        Map<String, List<Integer>> statistic = new TreeMap<String, List<Integer>>();
 
         List<Integer> result = null;
 
@@ -48,9 +49,12 @@ public class FilterApplier {
         log.info("Fail:" + analyzer.getFail());
         
         for (String key : statistic.keySet()) {
-            log.info("Key:" + key);
+            if (analyzer.getSuccess(key) > 50)
+                log.info("Key:" + key);
+            /*
             log.info("Success:" + analyzer.getSuccess(key));
             log.info("Fail:" + analyzer.getFail(key));
+            */
         }
     }
 }
