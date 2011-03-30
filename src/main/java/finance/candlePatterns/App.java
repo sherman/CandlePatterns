@@ -21,7 +21,7 @@ public class App {
             new FinamParserFactory<FinamDataParser>();
         
         DataLoader<FinamDataParser> loader = new DataLoader<FinamDataParser>(
-            new File("/home/sherman/stat/SPFB.RTS_010101_110322.txt"),
+            new File(args[0]),
             pFactory
         );
         
