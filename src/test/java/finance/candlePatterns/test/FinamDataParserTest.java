@@ -34,6 +34,16 @@ public class FinamDataParserTest {
                     new BigDecimal(186945.00, new MathContext(8)),
                     new BigDecimal(182875.00, new MathContext(8))
                 )
+            },
+            {
+                "20110221,180000,186651.00000,186945.00000,182875.00000,183340.00000,1368923",
+                new Bar(
+                    new LocalDateTime("2011-02-21T18:00:00"),
+                    new BigDecimal(186651.00, new MathContext(8)),
+                    new BigDecimal(183340.00, new MathContext(8)),
+                    new BigDecimal(186945.00, new MathContext(8)),
+                    new BigDecimal(182875.00, new MathContext(8))
+                )
             }
         };
     }
