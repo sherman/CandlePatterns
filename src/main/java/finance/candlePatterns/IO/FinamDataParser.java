@@ -34,8 +34,8 @@ public class FinamDataParser implements DataParser {
                 new Integer(parts[0].substring(0, 4)),
                 new Integer(parts[0].substring(4, 6)),
                 new Integer(parts[0].substring(6)),
-                0,
-                0
+                new Integer(parts[1].substring(0, 2)),
+                new Integer(parts[1].substring(2, 4))
             ),
             open,
             close,
