@@ -12,6 +12,8 @@ public class Analyzer {
     // total
     private final Pair<Double, Double> result;
     
+    private final Pair<Integer, Integer> resultAbsolute;
+    
     private final Map<String, Pair<Double, Double>> perMonthResult =
         new HashMap<String, Pair<Double, Double>>();
     
@@ -52,14 +54,27 @@ public class Analyzer {
             (double)successCnt / total * 100,
             (double)failCnt / total * 100
         );
+        
+        resultAbsolute = new Pair<Integer, Integer>(
+            successCnt,
+            failCnt
+        );
     }
 
-    public double getSuccess() {
+    public double getSuccessPercent() {
         return result.first;
     }
 
-    public double getFail() {
+    public double getFailPercent() {
         return result.second;
+    }
+    
+    public double getSuccess() {
+        return resultAbsolute.first;
+    }
+
+    public double getFail() {
+        return resultAbsolute.second;
     }
     
     public double getSuccess(String key) {
