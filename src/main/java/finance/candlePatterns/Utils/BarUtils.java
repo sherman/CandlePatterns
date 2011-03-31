@@ -11,7 +11,7 @@ import finance.candlePatterns.Core.Bar;
 public class BarUtils {
     private BarUtils() {}
     
-    public static boolean isUpTrend(Map<LocalDate, List<Bar>> bars, Bar bar) {
+    public static boolean isUpTrendByOpenCloseRange(Map<LocalDate, List<Bar>> bars, Bar bar) {
         final List<Bar> dayBars = bars.get(bar.time.toLocalDate());
         
         return
