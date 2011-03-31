@@ -32,4 +32,18 @@ public class BarUtils {
         
         return index;
     }
+    
+    public static int getLastBarOfTheDay(List<Bar> bars, Bar bar) {
+        int index = bars.indexOf(bar);
+        while (
+            index < bars.size() - 1
+            &&
+                bars.get(index + 1).time.dayOfMonth().
+                equals(bar.time.dayOfMonth())
+        ) {
+            index++;
+        }
+        
+        return index;
+    }
 }
