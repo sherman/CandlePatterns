@@ -33,7 +33,8 @@ public class App {
         HourToDaysFilterApplier applier = new HourToDaysFilterApplier(
             //new LongVolatilityBreakoutFilter(bars, 0.4)
             //new LongTradeDayOfTheWeek(bars, 3)
-            new ExtremumOfTheDayFilter(bars, 11, Arrays.asList(10))
+            new ExtremumOfTheDayFilter(bars, 11, Arrays.asList(10)).
+                setTresholdValue(500)
         );
         
         applier.filtrate(bars);
