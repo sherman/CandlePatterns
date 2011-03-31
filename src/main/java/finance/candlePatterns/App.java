@@ -34,7 +34,7 @@ public class App {
             //new LongVolatilityBreakoutFilter(bars, 0.4)
             //new LongTradeDayOfTheWeek(bars, 3)
             new ExtremumOfTheDayFilter(bars, 11, Arrays.asList(10)).
-                setTresholdValue(500)
+                setTresholdValue(0)
         );
         
         applier.filtrate(bars);
