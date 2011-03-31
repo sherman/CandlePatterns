@@ -1,5 +1,6 @@
 package finance.candlePatterns.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,5 +46,25 @@ public class BarUtils {
         }
         
         return index;
+    }
+    
+    public static List<Bar> getBarsForWholeDay(
+        List<Bar> bars,
+        Bar bar,
+        List<Integer> ignoreHours
+    ) {
+        int beginIndex = BarUtils.getFirstBarOfTheDay(bars, bar);
+        int endIndex = BarUtils.getLastBarOfTheDay(bars, bar);
+        
+        List<Bar> dayBars = new ArrayList<Bar>();
+        
+        for (int i = beginIndex; i <= endIndex; i++) {
+            if (ignoreHours.contains(bars.get(i).time.getHourOfDay()))
+                continue;
+            
+            dayBars.add(bars.get(i));
+        }
+        
+        return dayBars;
     }
 }
