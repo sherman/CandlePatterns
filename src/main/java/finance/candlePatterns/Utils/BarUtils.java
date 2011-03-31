@@ -18,4 +18,18 @@ public class BarUtils {
                 subtract(dayBars.get(0).open).
                     doubleValue() > 0;
     }
+    
+    public static int getFirstBarOfTheDay(List<Bar> bars, Bar bar) {
+        int index = bars.indexOf(bar);
+        while (
+            index > 0
+            &&
+                bars.get(index - 1).time.dayOfMonth().
+                equals(bar.time.dayOfMonth())
+        ) {
+            index--;
+        }
+        
+        return index;
+    }
 }
