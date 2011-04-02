@@ -101,12 +101,14 @@ public class App {
                 return null;
             }
             
+            int filterArgsLength = (null != filterArgs) ? filterArgs.length : 0;
+            
             // trying to create class
-            Class<?>[] classParams = new Class<?>[filterArgs.length];
+            Class<?>[] classParams = new Class<?>[filterArgsLength];
             
             List<Object> typedArgs = new ArrayList<Object>();
             
-            for (int i = 0; i < filterArgs.length; i++) {
+            for (int i = 0; i < filterArgsLength; i++) {
                 Integer intValue = getInt(filterArgs[i]);
                 
                 if (null != intValue) {
