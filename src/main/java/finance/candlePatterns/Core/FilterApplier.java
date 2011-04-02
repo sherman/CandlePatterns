@@ -19,6 +19,8 @@ public class FilterApplier {
     }
     
     public void filtrate(List<Bar> bars) {
+        filter.setBars(bars);
+        
         Map<String, List<Integer>> statistic = new TreeMap<String, List<Integer>>();
 
         List<Integer> result = null;
@@ -33,13 +35,13 @@ public class FilterApplier {
                 statisticKey = StatisticUtils.key(current);
                 result = new ArrayList<Integer>();
                 statistic.put(statisticKey, result);
-            } else {
-                if (filter.isAppliedFor(current)) {
-                    if (filter.isSuccess(current)) {
-                        result.add(1);
-                    } else {
-                        result.add(0);
-                    }
+            }
+            
+            if (filter.isAppliedFor(current)) {
+                if (filter.isSuccess(current)) {
+                    result.add(1);
+                } else {
+                    result.add(0);
                 }
             }
         }
@@ -47,6 +49,8 @@ public class FilterApplier {
         Analyzer analyzer = new Analyzer(statistic);
         log.info("Success:" + analyzer.getSuccess());
         log.info("Fail:" + analyzer.getFail());
+        log.info("Success:" + analyzer.getSuccessPercent());
+        log.info("Fail:" + analyzer.getFailPercent());
         
         for (String key : statistic.keySet()) {
             if (analyzer.getSuccess(key) > 50)

@@ -17,5 +17,4 @@ public class CloseOpenRangeTrendDefination implements TrendDefination {
             subtract(bars.get(0).open).
                 doubleValue() > 0;
     }
-
 }
