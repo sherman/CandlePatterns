@@ -58,4 +58,23 @@ public class BarUtils {
         
         return dayBars;
     }
+    
+    public static boolean isInsideDay(
+        List<Bar> bars,
+        Bar bar
+    ) {
+        int index = bars.indexOf(bar);
+        
+        if (index == -1)
+            return false;
+        
+        int previousIndex = index - 1;
+        
+        if (previousIndex == -1)
+            return false;
+        
+        return
+            bars.get(previousIndex).high.compareTo(bars.get(index).high) > 0
+            && bars.get(previousIndex).low.compareTo(bars.get(index).low) < 0;
+    }
 }
