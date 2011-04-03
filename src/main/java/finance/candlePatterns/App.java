@@ -3,13 +3,10 @@ package finance.candlePatterns;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
-import com.beust.jcommander.internal.Lists;
 
 import finance.candlePatterns.Core.Bar;
 import finance.candlePatterns.Core.BarFilter;
@@ -18,7 +15,6 @@ import finance.candlePatterns.IO.DataLoader;
 import finance.candlePatterns.IO.FinamDataParser;
 import finance.candlePatterns.IO.FinamParserFactory;
 import finance.candlePatterns.IO.ParserFactory;
-import finance.candlePatterns.Utils.Pair;
 
 /**
  *
