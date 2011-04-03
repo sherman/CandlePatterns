@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.beust.jcommander.internal.Lists;
+
 import finance.candlePatterns.Core.Bar;
 import finance.candlePatterns.Core.BarFilter;
 import finance.candlePatterns.Core.FilterApplier;
@@ -68,12 +70,11 @@ public class App {
             log.debug("Filter class:"  + filterClassName);
             log.debug("Filter args:"  + filterArgs);
             
-            Class<?> filterClass = null;
             // check class
-            try {
-                filterClass = Class.forName(filterClassName);
-            } catch (ClassNotFoundException e) {
-                log.fatal(e);
+            Class<BarFilter> filterClass = createClass();
+            
+            if (!BarFilter.class.isAssignableFrom(filterClass)) {
+                log.fatal("This class hasn't implemented BarFilter intreface");
                 return null;
             }
             
@@ -106,7 +107,7 @@ public class App {
                 typedArgs[i] = filterArgs[i];
             }
             
-            Constructor<?> ctor;
+            Constructor<BarFilter> ctor;
             
             try {
                 log.debug(
@@ -131,7 +132,7 @@ public class App {
             
             // create filter
             try {
-                filter = (BarFilter) ctor.newInstance(typedArgs);
+                filter = ctor.newInstance(typedArgs);
             } catch (IllegalArgumentException e) {
                 log.fatal(e);
                 return null;
@@ -163,6 +164,16 @@ public class App {
                 return Double.parseDouble(arg);
             } catch (NumberFormatException e) {
                 log.debug("Arg " + arg + " isn't Double");
+                return null;
+            }
+        }
+        
+        @SuppressWarnings("unchecked")
+        private Class<BarFilter> createClass() {
+            try {
+                return (Class<BarFilter>) Class.forName(filterClassName);
+            } catch (ClassNotFoundException e) {
+                log.fatal(e);
                 return null;
             }
         }
