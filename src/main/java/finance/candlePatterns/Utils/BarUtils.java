@@ -2,9 +2,9 @@ package finance.candlePatterns.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.joda.time.LocalDate;
+
+
 
 import finance.candlePatterns.Core.Bar;
 
