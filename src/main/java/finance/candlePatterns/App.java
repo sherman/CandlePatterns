@@ -39,19 +39,7 @@ public class App {
             return;
         }
         
-        ParserFactory<FinamDataParser> pFactory =
-            new FinamParserFactory<FinamDataParser>();
-        
-        DataLoader<FinamDataParser> loader = new DataLoader<FinamDataParser>(
-            new File(args[1]),
-            pFactory
-        );
-        
-        List<Bar> bars = loader.load();
-        
         BarFilter filter = null;
-        
-        System.out.println(costructorInfo.first);
         
         // create filter
         try {
@@ -72,6 +60,15 @@ public class App {
             return;
         }
         
+        ParserFactory<FinamDataParser> pFactory =
+            new FinamParserFactory<FinamDataParser>();
+        
+        DataLoader<FinamDataParser> loader = new DataLoader<FinamDataParser>(
+            new File(args[1]),
+            pFactory
+        );
+        
+        List<Bar> bars = loader.load();
         FilterApplier applier = new FilterApplier(filter);
         applier.filtrate(bars);
     }
