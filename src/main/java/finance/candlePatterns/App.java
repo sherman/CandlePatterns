@@ -32,31 +32,10 @@ public class App {
                 : null
         );
         
-        Pair<Constructor<?>, List<Object>> costructorInfo = ctor.getConstructor();
+        BarFilter filter = ctor.createObject();
         
-        if (null == costructorInfo) {
+        if (null == filter) {
             log.info("Exit");
-            return;
-        }
-        
-        BarFilter filter = null;
-        
-        // create filter
-        try {
-            filter = (BarFilter) costructorInfo.first.newInstance(
-                costructorInfo.second.toArray()
-            );
-        } catch (IllegalArgumentException e) {
-            log.fatal(e);
-            return;
-        } catch (InstantiationException e) {
-            log.fatal(e);
-            return;
-        } catch (IllegalAccessException e) {
-            log.fatal(e);
-            return;
-        } catch (InvocationTargetException e) {
-            log.fatal(e);
             return;
         }
         
@@ -85,7 +64,7 @@ public class App {
         /**
          * @return Constructor and typed args
          */
-        public Pair<Constructor<?>, List<Object>> getConstructor() {
+        public BarFilter createObject() {
             log.debug("Filter class:"  + filterClassName);
             log.debug("Filter args:"  + filterArgs);
             
@@ -103,14 +82,14 @@ public class App {
             // trying to create class
             Class<?>[] classParams = new Class<?>[filterArgsLength];
             
-            List<Object> typedArgs = new ArrayList<Object>();
+            Object[] typedArgs = new Object[filterArgsLength];
             
             for (int i = 0; i < filterArgsLength; i++) {
                 Integer intValue = getInt(filterArgs[i]);
                 
                 if (null != intValue) {
                     classParams[i] = intValue.getClass();
-                    typedArgs.add(intValue);
+                    typedArgs[i] = intValue;
                     continue;
                 }
                 
@@ -118,13 +97,13 @@ public class App {
                 
                 if (null != doubleValue) {
                     classParams[i] = doubleValue.getClass();
-                    typedArgs.add(doubleValue);
+                    typedArgs[i] = doubleValue;
                     continue;
                 }
                 
                 // string
                 classParams[i] = filterArgs[i].getClass();
-                typedArgs.add(filterArgs[i]);
+                typedArgs[i] = filterArgs[i];
             }
             
             Constructor<?> ctor;
@@ -147,7 +126,27 @@ public class App {
                 return null;
             }
             
-            return new Pair<Constructor<?>, List<Object>>(ctor, typedArgs);
+            
+            BarFilter filter = null;
+            
+            // create filter
+            try {
+                filter = (BarFilter) ctor.newInstance(typedArgs);
+            } catch (IllegalArgumentException e) {
+                log.fatal(e);
+                return null;
+            } catch (InstantiationException e) {
+                log.fatal(e);
+                return null;
+            } catch (IllegalAccessException e) {
+                log.fatal(e);
+                return null;
+            } catch (InvocationTargetException e) {
+                log.fatal(e);
+                return null;
+            }
+            
+            return filter;
         }
         
         private Integer getInt(String arg) {
