@@ -1,2 +1,4 @@
 .gitconfig
-src/main/java/finance/candlePatterns/Filters/
+src/main/java/finance/candlePatterns/Filters/*
+!src/main/java/finance/candlePatterns/Filters/LongTradeDayOfTheWeek.java
+
