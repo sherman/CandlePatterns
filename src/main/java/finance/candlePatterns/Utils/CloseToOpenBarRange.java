@@ -2,10 +2,10 @@ package finance.candlePatterns.Utils;
 
 import finance.candlePatterns.Core.Bar;
 
-public class CloseOpenBarRangeTrendDefination implements TrendDefination {
+public class CloseToOpenBarRange implements Trend {
     private final Bar bar;
     
-    public CloseOpenBarRangeTrendDefination(Bar bar) {
+    public CloseToOpenBarRange(Bar bar) {
         this.bar = bar;
     }
     

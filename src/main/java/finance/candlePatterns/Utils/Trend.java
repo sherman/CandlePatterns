@@ -1,5 +1,5 @@
 package finance.candlePatterns.Utils;
 
-public interface TrendDefination {
+public interface Trend {
     boolean isUpTrend();
 }

@@ -4,10 +4,10 @@ import java.util.List;
 
 import finance.candlePatterns.Core.Bar;
 
-public class CloseOpenRangeTrendDefination implements TrendDefination {
+public class CloseToOpenRange implements Trend {
     private final List<Bar> bars;
     
-    public CloseOpenRangeTrendDefination(List<Bar> bars) {
+    public CloseToOpenRange(List<Bar> bars) {
         this.bars = bars;
     }
     
