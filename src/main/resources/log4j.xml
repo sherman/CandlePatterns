@@ -12,7 +12,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="finance.candlePatterns">
+	<logger name="org.sherman.finance.candlepattern">
 		<level value="debug" />
 	</logger>
 	
