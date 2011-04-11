@@ -6,6 +6,7 @@ import finance.candlePatterns.Core.Bar;
 import finance.candlePatterns.Core.BaseFilter;
 import finance.candlePatterns.Utils.CloseToOpenBarRange;
 import finance.candlePatterns.Utils.Trend;
+import finance.candlePatterns.Utils.Trends;
 
 //works only for days
     public class LongTradeDayOfTheWeek extends BaseFilter {
@@ -23,8 +24,7 @@ import finance.candlePatterns.Utils.Trend;
 
         @Override
         public boolean isSuccess(Bar bar) {
-            Trend trendChecker = new CloseToOpenBarRange(bar);
-            return trendChecker.isUpTrend();
+            return Trends.closeToOpenBarRange(bar).isUpTrend();
         }
     }
 
