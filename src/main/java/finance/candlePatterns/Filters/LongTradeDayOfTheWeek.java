@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 
 import finance.candlePatterns.Core.Bar;
 import finance.candlePatterns.Core.BaseFilter;
+import finance.candlePatterns.Utils.CloseOpenBarRangeTrendDefination;
+import finance.candlePatterns.Utils.TrendDefination;
 
 //works only for days
     public class LongTradeDayOfTheWeek extends BaseFilter {
@@ -21,7 +23,8 @@ import finance.candlePatterns.Core.BaseFilter;
 
         @Override
         public boolean isSuccess(Bar bar) {
-            return bar.open.doubleValue() < bar.close.doubleValue();
+            TrendDefination trendChecker = new CloseOpenBarRangeTrendDefination(bar);
+            return trendChecker.isUpTrend();
         }
     }
 
