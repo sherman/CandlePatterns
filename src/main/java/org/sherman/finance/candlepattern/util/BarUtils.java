@@ -1,9 +1,11 @@
 package org.sherman.finance.candlepattern.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.sherman.finance.candlepattern.core.Bar;
+import org.testng.collections.Lists;
 
 
 
@@ -58,6 +60,13 @@ public class BarUtils {
         }
         
         return dayBars;
+    }
+    
+    public static List<Bar> getBarsForWholeDay(
+        List<Bar> bars,
+        Bar bar
+    ) {
+        return getBarsForWholeDay(bars, bar, Lists.<Integer>newArrayList());
     }
     
     public static boolean isInsideDay(
