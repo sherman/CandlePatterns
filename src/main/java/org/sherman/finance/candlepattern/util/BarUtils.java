@@ -88,7 +88,7 @@ public class BarUtils {
             && bars.get(previousIndex).low.compareTo(bars.get(index).low) < 0;
     }
     
-    public static double getDiffBetweenOpenAndMin(double open, List<Bar> bars) {
+    public static double getDiffBetweenOpenAndLow(double open, List<Bar> bars) {
         double min = Double.MAX_VALUE;
         
         for (Bar bar : bars) {
@@ -96,5 +96,15 @@ public class BarUtils {
         }
         
         return open - min;
+    }
+    
+    public static double getDiffBetweenOpenAndHigh(double open, List<Bar> bars) {
+        double max = Double.MIN_VALUE;
+        
+        for (Bar bar : bars) {
+            max = Math.max(max, bar.high.doubleValue());
+        }
+        
+        return max - open;
     }
 }
